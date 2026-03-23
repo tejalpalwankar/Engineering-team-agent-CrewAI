@@ -17,26 +17,157 @@ The system combines **backend business logic** with a **user-facing interface**,
 
 ---
 
-## 🧠 Architecture
+## 🧠 Agent & Task Architecture
 
 ```mermaid
 flowchart TD
-    A[User Interface - Gradio] --> B[Controller Functions]
+    A[User Input: Requirements] --> B[Engineering Team Crew]
 
-    B --> C[Account Model]
-    C --> D[Balance + Holdings + Transactions]
+    B --> C[Engineering Lead]
+    C --> D[Design Task]
+    D --> E[System Design Output]
 
-    B --> E[Operations]
-    E --> F[Buy Shares]
-    E --> G[Sell Shares]
-    E --> H[Deposit / Withdraw]
+    E --> F[Backend Engineer]
+    F --> G[Code Task]
+    G --> H[accounts.py]
 
-    B --> I[Reporting Layer]
-    I --> J[Portfolio Value]
-    I --> K[Profit / Loss]
-    I --> L[Holdings]
-    I --> M[Transactions]
+    H --> I[Frontend Engineer]
+    I --> J[Frontend Task]
+    J --> K[app.py]
+
+    H --> L[Test Engineer]
+    L --> M[Test Task]
+    M --> N[test_accounts.py]
+
 ````
+
+---
+
+## ⚙️ Execution Flow
+
+```mermaid
+flowchart LR
+    A[Design Task] --> B[Code Task]
+    B --> C[Frontend Task]
+    B --> D[Test Task]
+```
+
+---
+
+## 🧩 Agent Responsibilities
+
+### 👨‍💼 Engineering Lead
+
+* Converts high-level requirements into a **detailed system design**
+* Defines:
+
+  * classes
+  * methods
+  * module structure
+
+📄 Design output → `accounts.py_design.md` 
+
+---
+
+### 🧑‍💻 Backend Engineer
+
+* Implements the full system in **one Python module**
+* Ensures:
+
+  * business logic correctness
+  * validation rules (no negative balance, etc.)
+  * UI-compatible outputs (important fix)
+
+📄 Output → `accounts.py` 
+
+---
+
+### 🎨 Frontend Engineer
+
+* Builds a **Gradio UI**
+* Connects UI actions to backend methods
+* Demonstrates system functionality
+
+📄 Output → `app.py` 
+
+---
+
+### 🧪 Test Engineer
+
+* Writes **unit tests** for backend module
+* Validates:
+
+  * transactions
+  * holdings
+  * edge cases
+
+📄 Output → `test_accounts.py` 
+
+---
+
+## 🔄 Task Pipeline
+
+The system follows a **sequential pipeline with context passing**:
+
+1. **Design Task**
+
+   * Creates system architecture
+2. **Code Task**
+
+   * Implements backend using design
+3. **Frontend Task**
+
+   * Builds UI using backend
+4. **Test Task**
+
+   * Validates backend correctness
+
+📄 Defined in: 
+
+---
+
+## 🧠 Key Design Pattern
+
+This system uses a **role-based multi-agent engineering workflow**:
+
+* Separation of concerns (design / backend / frontend / testing)
+* Sequential execution ensures dependency correctness
+* Context passing between tasks improves consistency
+* Each agent focuses on a **single responsibility**
+
+---
+
+## 🏗️ Architecture Summary
+
+The system is structured into three layers:
+
+### 1. Agent Layer
+
+* Engineering Lead
+* Backend Engineer
+* Frontend Engineer
+* Test Engineer
+
+### 2. Task Layer
+
+* Design → Code → Frontend → Test
+
+### 3. Output Layer
+
+* Design doc
+* Backend module
+* UI app
+* Test suite
+
+---
+
+## 📌 Why This Architecture Matters
+
+* Mimics real-world engineering teams
+* Enforces structured development lifecycle
+* Reduces errors through staged execution
+* Improves maintainability and extensibility
+
 
 ---
 
